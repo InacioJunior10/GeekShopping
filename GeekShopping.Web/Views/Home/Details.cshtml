@@ -1,4 +1,4 @@
-﻿@model ProductModel
+﻿@model ProductViewModel
 
 <form method="post">
     <input asp-for="Id" hidden />
@@ -16,7 +16,7 @@
                 <div class="container rounded p-2">
                     <div class="row">
                         <div class="col-12 col-lg-4 p-1 text-center">
-                            <img src="@Model.ImageUrl" style="border-radius: 35px;" width="100%" class="rounded" />
+                            <img src="@Model.ImageURL" style="border-radius: 35px;" width="100%" class="rounded" />
                         </div>
                         <div class="col-12 col-lg-8">
                             <div class="row pl-3">
