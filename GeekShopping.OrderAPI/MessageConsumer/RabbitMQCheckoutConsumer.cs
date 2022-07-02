@@ -1,6 +1,9 @@
-﻿using GeekShopping.OrderAPI.Messages;
+﻿using GeekShopping.OrderAPI.Data.Enuns;
+using GeekShopping.OrderAPI.Messages;
 using GeekShopping.OrderAPI.Model;
+using GeekShopping.OrderAPI.RabbitMQSender;
 using GeekShopping.OrderAPI.Repository;
+using GeekShopping.Utils;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -13,11 +16,16 @@ namespace GeekShopping.OrderAPI.MessageConsumer
         private readonly OrderRepository _repository;
         private IConnection _connection;
         private IModel _channel;
-        private const string queue = "checkout";
-
-        public RabbitMQCheckoutConsumer(OrderRepository repository)
+        private IRabbitMQMessageSender _rabbitMQMessageSender;
+       
+        public RabbitMQCheckoutConsumer(
+                OrderRepository repository,
+                IRabbitMQMessageSender rabbitMQMessageSender
+            )
         {
             _repository = repository;
+            _rabbitMQMessageSender = rabbitMQMessageSender;
+
             var factory = new ConnectionFactory
             {
                 HostName = "localhost",
@@ -27,7 +35,7 @@ namespace GeekShopping.OrderAPI.MessageConsumer
                         
             _connection = factory.CreateConnection();
             _channel = _connection.CreateModel();
-            _channel.QueueDeclare(queue, false, false, false);
+            _channel.QueueDeclare(QueueName.Checkout.GetDescription(), false, false, false);
         }
 
         protected override Task ExecuteAsync(CancellationToken stoppingToken)
@@ -42,7 +50,7 @@ namespace GeekShopping.OrderAPI.MessageConsumer
                 _channel.BasicAck(evento.DeliveryTag, false);
             };
 
-            _channel.BasicConsume(queue, false, consumer);
+            _channel.BasicConsume(QueueName.Checkout.GetDescription(), false, consumer);
             return Task.CompletedTask;
         }
 
@@ -82,6 +90,32 @@ namespace GeekShopping.OrderAPI.MessageConsumer
             }
 
             await _repository.AddOrder(order);
+
+            OrderPaymentProcess(order);
+        }
+
+        private void OrderPaymentProcess(OrderHeader order)
+        {
+            PaymentDTO payment = new()
+            {
+                Name = $"{order.FirstName} {order.LastName}",
+                CardNumber = order.CardNumber,
+                CVV = order.CVV,
+                ExpiryMonthYear = order.ExpiryMonthYear,
+                OrderId = order.Id,
+                PurchaseAmount = order.PurchaseAmount,
+                Email = order.Email
+            };
+
+            try
+            {
+                _rabbitMQMessageSender.SendMessage(payment, QueueName.OrderPaymentProcess.GetDescription());
+            }
+            catch (Exception ex)
+            {
+                // Log
+                throw;
+            }
         }
     }
 }

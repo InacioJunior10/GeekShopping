@@ -1,7 +1,10 @@
 using GeekShopping.CartAPI.Data.DTOs;
+using GeekShopping.CartAPI.Data.Enuns;
 using GeekShopping.CartAPI.Messages;
 using GeekShopping.CartAPI.RabbitMQSender;
 using GeekShopping.CartAPI.Repository;
+using GeekShopping.Utils;
+using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
 namespace GeekShopping.CartAPI.Controllers
@@ -97,9 +100,10 @@ namespace GeekShopping.CartAPI.Controllers
 
             if (!string.IsNullOrEmpty(model.CouponCode))
             {
-                CouponDTO coupon = await _couponRepository.GetCouponByCouponCode(
+                var token = await HttpContext.GetTokenAsync("access_token");
+                CouponDTO coupon = await _couponRepository.GetCoupon(
                         model.CouponCode, 
-                        Request.Headers["Authorization"]
+                        token
                     );
 
                 if (model.DiscountAmount != coupon.DiscountAmount)
@@ -109,7 +113,7 @@ namespace GeekShopping.CartAPI.Controllers
             model.CartDetails = cart.CartDetails;
             model.DateTime = DateTime.Now;
 
-            _rabbitMQMessageSender.SendMessage(model, "checkout");
+            _rabbitMQMessageSender.SendMessage(model, QueueName.Checkout.GetDescription());
 
             return Ok(model);
         }
