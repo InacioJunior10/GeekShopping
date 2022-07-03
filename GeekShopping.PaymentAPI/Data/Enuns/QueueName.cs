@@ -1,6 +1,6 @@
 ﻿using System.ComponentModel;
 
-namespace GeekShopping.OrderAPI.Data.Enuns
+namespace GeekShopping.PaymentAPI.Data.Enuns
 {
     public enum QueueName
     {
