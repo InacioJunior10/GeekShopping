@@ -31,9 +31,13 @@ Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.Utils", "GeekS
 EndProject
 Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.PaymentAPI", "GeekShopping.PaymentAPI\GeekShopping.PaymentAPI.csproj", "{9FC8AF85-8ED7-49BA-9377-D53922CE3692}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekShopping.Email", "GeekShopping.Email\GeekShopping.Email.csproj", "{8B7B38C8-5D35-4BEE-8C35-9637BE61C5E2}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.Email", "GeekShopping.Email\GeekShopping.Email.csproj", "{8B7B38C8-5D35-4BEE-8C35-9637BE61C5E2}"
 EndProject
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekShopping.Integration", "GeekShopping.Integration\GeekShopping.Integration.csproj", "{297B4A75-A06D-48AC-B758-F7459911B14C}"
+Project("{9A19103F-16F7-4668-BE54-9A1E7A4F7556}") = "GeekShopping.Integration", "GeekShopping.Integration\GeekShopping.Integration.csproj", "{297B4A75-A06D-48AC-B758-F7459911B14C}"
+EndProject
+Project("{2150E333-8FDC-42A3-9474-1A3956D46DE8}") = "Gateway", "Gateway", "{D99493D4-7600-4D5B-8FA8-58CF505C3904}"
+EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "GeekShopping.APIGateway", "GeekShopping.APIGateway\GeekShopping.APIGateway.csproj", "{2F7A26FE-9A65-42A9-BF85-2B84DBE1AF0B}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
@@ -89,6 +93,10 @@ Global
 		{297B4A75-A06D-48AC-B758-F7459911B14C}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{297B4A75-A06D-48AC-B758-F7459911B14C}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{297B4A75-A06D-48AC-B758-F7459911B14C}.Release|Any CPU.Build.0 = Release|Any CPU
+		{2F7A26FE-9A65-42A9-BF85-2B84DBE1AF0B}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{2F7A26FE-9A65-42A9-BF85-2B84DBE1AF0B}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{2F7A26FE-9A65-42A9-BF85-2B84DBE1AF0B}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{2F7A26FE-9A65-42A9-BF85-2B84DBE1AF0B}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 	GlobalSection(SolutionProperties) = preSolution
 		HideSolutionNode = FALSE
@@ -106,6 +114,7 @@ Global
 		{9FC8AF85-8ED7-49BA-9377-D53922CE3692} = {167682B8-28FD-4BE5-9145-87E430650555}
 		{8B7B38C8-5D35-4BEE-8C35-9637BE61C5E2} = {167682B8-28FD-4BE5-9145-87E430650555}
 		{297B4A75-A06D-48AC-B758-F7459911B14C} = {95837DAC-3F9B-402F-B5FA-B46FB7256FD2}
+		{2F7A26FE-9A65-42A9-BF85-2B84DBE1AF0B} = {D99493D4-7600-4D5B-8FA8-58CF505C3904}
 	EndGlobalSection
 	GlobalSection(ExtensibilityGlobals) = postSolution
 		SolutionGuid = {02DC02F4-0136-4891-9C1D-50D52DEBC81F}

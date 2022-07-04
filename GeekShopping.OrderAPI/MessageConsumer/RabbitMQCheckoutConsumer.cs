@@ -1,4 +1,4 @@
-﻿using GeekShopping.OrderAPI.Data.Enuns;
+﻿using GeekShopping.Integration.Enuns;
 using GeekShopping.OrderAPI.Messages;
 using GeekShopping.OrderAPI.Model;
 using GeekShopping.OrderAPI.RabbitMQSender;
