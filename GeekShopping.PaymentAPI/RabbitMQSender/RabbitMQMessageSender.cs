@@ -1,5 +1,7 @@
-﻿using GeekShopping.MessageBus;
+﻿using GeekShopping.Integration.Enuns;
+using GeekShopping.MessageBus;
 using GeekShopping.PaymentAPI.Messages;
+using GeekShopping.Utils;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -11,7 +13,7 @@ namespace GeekShopping.PaymentAPI.RabbitMQSender
         private readonly string _hostName;
         private readonly string _password;
         private readonly string _userName;
-        private IConnection _connection;
+        private IConnection _connection;       
 
         public RabbitMQMessageSender()
         {
@@ -20,15 +22,41 @@ namespace GeekShopping.PaymentAPI.RabbitMQSender
             _userName = "guest";
         }
 
-        public void SendMessage(BaseMessage message, string queueName)
+        public void SendMessage(BaseMessage message)
         {
             if (ConnectionExists())
             {
                 using var channel = _connection.CreateModel();
-                channel.QueueDeclare(queueName, false, false, false);
+                channel.ExchangeDeclare(ExchangeName.DirectPaymentUpdate.GetDescription(), ExchangeType.Direct, durable: false);
+                
+                channel.QueueDeclare(QueueName.PaymentEmailUpdate.GetDescription(), false, false, false, null);
+                channel.QueueDeclare(QueueName.PaymentOrderUpdate.GetDescription(), false, false, false, null);
+
+                channel.QueueBind(
+                        QueueName.PaymentEmailUpdate.GetDescription(), 
+                        ExchangeName.DirectPaymentUpdate.GetDescription(), 
+                        RoutingKey.PaymentEmail.GetDescription()
+                    );
+
+                channel.QueueBind(
+                        QueueName.PaymentOrderUpdate.GetDescription(), 
+                        ExchangeName.DirectPaymentUpdate.GetDescription(),
+                        RoutingKey.PaymentOrder.GetDescription()
+                    );
 
                 byte[] body = GetMessageAsByteArray(message);
-                channel.BasicPublish(exchange: "", routingKey: queueName, basicProperties: null, body: body);
+                channel.BasicPublish(
+                        exchange: ExchangeName.DirectPaymentUpdate.GetDescription(),
+                        RoutingKey.PaymentEmail.GetDescription(), 
+                        basicProperties: null, 
+                        body: body
+                    );
+                channel.BasicPublish(
+                        exchange: ExchangeName.DirectPaymentUpdate.GetDescription(),
+                        RoutingKey.PaymentOrder.GetDescription(), 
+                        basicProperties: null, 
+                        body: body
+                    );
             }
         }
 

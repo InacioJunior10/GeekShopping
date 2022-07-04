@@ -1,4 +1,4 @@
-﻿using GeekShopping.PaymentAPI.Data.Enuns;
+﻿using GeekShopping.Integration.Enuns;
 using GeekShopping.PaymentAPI.Messages;
 using GeekShopping.PaymentAPI.RabbitMQSender;
 using GeekShopping.PaymentProcessor;
@@ -65,7 +65,7 @@ namespace GeekShopping.PaymentAPI.MessageConsumer
 
             try
             {
-                _rabbitMQMessageSender.SendMessage(paymentResult, QueueName.OrderPaymentResult.GetDescription());
+                _rabbitMQMessageSender.SendMessage(paymentResult);
             }
             catch (Exception ex)
             {

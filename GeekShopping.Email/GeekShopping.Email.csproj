@@ -22,12 +22,7 @@
   <ItemGroup>
     <ProjectReference Include="..\GeekShopping.Integration\GeekShopping.Integration.csproj" />
     <ProjectReference Include="..\GeekShopping.MessageBus\GeekShopping.MessageBus.csproj" />
-    <ProjectReference Include="..\GeekShopping.PaymentProcessor\GeekShopping.PaymentProcessor.csproj" />
     <ProjectReference Include="..\GeekShopping.Utils\GeekShopping.Utils.csproj" />
-  </ItemGroup>
-
-  <ItemGroup>
-    <Folder Include="Controllers\" />
   </ItemGroup>
 
 </Project>
