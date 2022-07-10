@@ -1,9 +1,10 @@
-﻿using GeekShopping.Integration.Enuns;
+﻿using GeekShopping.Integration.DTOs;
+using GeekShopping.Integration.Enuns;
 using GeekShopping.OrderAPI.Messages;
 using GeekShopping.OrderAPI.Model;
 using GeekShopping.OrderAPI.RabbitMQSender;
 using GeekShopping.OrderAPI.Repository;
-using GeekShopping.Utils;
+using GeekShopping.Utils.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -45,7 +46,7 @@ namespace GeekShopping.OrderAPI.MessageConsumer
             consumer.Received += (channel, evento) => 
             {
                 var content = Encoding.UTF8.GetString(evento.Body.ToArray());
-                CheckoutHeaderDTO model = JsonSerializer.Deserialize<CheckoutHeaderDTO>(content);
+                CheckoutHeaderOrderDTO model = JsonSerializer.Deserialize<CheckoutHeaderOrderDTO>(content);
                 ProcessOrder(model).GetAwaiter().GetResult();
                 _channel.BasicAck(evento.DeliveryTag, false);
             };
@@ -54,7 +55,7 @@ namespace GeekShopping.OrderAPI.MessageConsumer
             return Task.CompletedTask;
         }
 
-        private async Task ProcessOrder(CheckoutHeaderDTO model)
+        private async Task ProcessOrder(CheckoutHeaderOrderDTO model)
         {
             OrderHeader order = new()
             {

@@ -1,7 +1,7 @@
 ﻿using AutoMapper;
-using GeekShopping.CartAPI.Data.DTOs;
 using GeekShopping.CartAPI.Model;
 using GeekShopping.CartAPI.Model.Context;
+using GeekShopping.Integration.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.CartAPI.Repository

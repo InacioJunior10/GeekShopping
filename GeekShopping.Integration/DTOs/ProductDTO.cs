@@ -1,8 +1,8 @@
-﻿namespace GeekShopping.OrderAPI.Messages
+﻿namespace GeekShopping.Integration.DTOs
 {
     public class ProductDTO
     {
-        public long Id { get; set; }        
+        public long Id { get; set; }
         public string Name { get; set; }
         public decimal Price { get; set; }
         public string Description { get; set; }

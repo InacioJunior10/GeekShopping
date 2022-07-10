@@ -1,8 +1,6 @@
-﻿using GeekShopping.MessageBus;
-
-namespace GeekShopping.OrderAPI.Messages
+﻿namespace GeekShopping.Integration.DTOs
 {
-    public class CheckoutHeaderDTO : BaseMessage
+    public class CheckoutHeaderDTO : BaseMessageDTO
     {
         public string UserId { get; set; }
         public string CouponCode { get; set; }
@@ -17,6 +15,5 @@ namespace GeekShopping.OrderAPI.Messages
         public string CVV { get; set; }
         public string ExpiryMothYear { get; set; }
         public int CartTotalItens { get; set; }
-        public IEnumerable<CartDetailDTO>? CartDetails { get; set; }
     }
 }

@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GeekShopping.ProductAPI.Data.DTOs;
+using GeekShopping.Integration.DTOs;
 using GeekShopping.ProductAPI.Model;
 using GeekShopping.ProductAPI.Model.Context;
 using Microsoft.EntityFrameworkCore;

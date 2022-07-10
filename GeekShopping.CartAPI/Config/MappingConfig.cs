@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeekShopping.CartAPI.Data.DTOs;
 using GeekShopping.CartAPI.Model;
+using GeekShopping.Integration.DTOs;
 
 namespace GeekShopping.CartAPI.Config
 {

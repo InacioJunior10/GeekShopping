@@ -1,9 +1,9 @@
-using GeekShopping.CartAPI.Data.DTOs;
-using GeekShopping.CartAPI.Data.Enuns;
 using GeekShopping.CartAPI.Messages;
 using GeekShopping.CartAPI.RabbitMQSender;
 using GeekShopping.CartAPI.Repository;
-using GeekShopping.Utils;
+using GeekShopping.Integration.DTOs;
+using GeekShopping.Integration.Enuns;
+using GeekShopping.Utils.Extensions;
 using Microsoft.AspNetCore.Authentication;
 using Microsoft.AspNetCore.Mvc;
 
@@ -89,7 +89,7 @@ namespace GeekShopping.CartAPI.Controllers
         }
 
         [HttpPost("checkout")]
-        public async Task<ActionResult<CheckoutHeaderDTO>> Checkout(CheckoutHeaderDTO model)
+        public async Task<ActionResult<CheckoutHeaderCartDTO>> Checkout(CheckoutHeaderCartDTO model)
         {
             if (model?.UserId == null)
                 return BadRequest();

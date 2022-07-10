@@ -1,9 +1,7 @@
-﻿namespace GeekShopping.Web.Models
+﻿using GeekShopping.Integration.DTOs;
+
+namespace GeekShopping.Web.Models
 {
-    public class CouponViewModel
-    {
-        public long Id { get; set; }
-        public string CouponCode { get; set; }
-        public decimal DiscountAmount { get; set; }
-    }
+    public class CouponViewModel : CouponDTO
+    { }
 }

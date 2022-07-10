@@ -1,7 +1,7 @@
 ﻿using GeekShopping.Integration.Enuns;
 using GeekShopping.MessageBus;
 using GeekShopping.PaymentAPI.Messages;
-using GeekShopping.Utils;
+using GeekShopping.Utils.Extensions;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;

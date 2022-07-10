@@ -1,5 +1,5 @@
-using GeekShopping.CouponAPI.Data.DTOs;
 using GeekShopping.CouponAPI.Repository;
+using GeekShopping.Integration.DTOs;
 using Microsoft.AspNetCore.Authorization;
 using Microsoft.AspNetCore.Mvc;
 

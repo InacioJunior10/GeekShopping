@@ -1,4 +1,4 @@
-﻿namespace GeekShopping.CouponAPI.Data.DTOs
+﻿namespace GeekShopping.Integration.DTOs
 {
     public class CouponDTO
     {

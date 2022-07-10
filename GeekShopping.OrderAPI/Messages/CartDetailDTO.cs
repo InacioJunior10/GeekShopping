@@ -1,4 +1,6 @@
-﻿namespace GeekShopping.OrderAPI.Messages
+﻿using GeekShopping.Integration.DTOs;
+
+namespace GeekShopping.OrderAPI.Messages
 {
     public class CartDetailDTO 
     {

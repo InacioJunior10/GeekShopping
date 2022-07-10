@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeekShopping.CouponAPI.Data.DTOs;
 using GeekShopping.CouponAPI.Model.Context;
+using GeekShopping.Integration.DTOs;
 using Microsoft.EntityFrameworkCore;
 
 namespace GeekShopping.CouponAPI.Repository

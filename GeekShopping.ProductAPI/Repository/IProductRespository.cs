@@ -1,4 +1,4 @@
-﻿using GeekShopping.ProductAPI.Data.DTOs;
+﻿using GeekShopping.Integration.DTOs;
 
 namespace GeekShopping.ProductAPI.Repository
 {

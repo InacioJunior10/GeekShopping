@@ -1,4 +1,4 @@
-﻿using GeekShopping.CouponAPI.Data.DTOs;
+﻿using GeekShopping.Integration.DTOs;
 
 namespace GeekShopping.CouponAPI.Repository
 {

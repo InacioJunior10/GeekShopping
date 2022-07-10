@@ -1,4 +1,4 @@
-﻿using GeekShopping.CartAPI.Data.DTOs;
+﻿using GeekShopping.Integration.DTOs;
 
 namespace GeekShopping.CartAPI.Repository
 {

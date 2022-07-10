@@ -1,7 +1,7 @@
 ﻿using GeekShopping.Email.Messages;
 using GeekShopping.Email.Repository;
 using GeekShopping.Integration.Enuns;
-using GeekShopping.Utils;
+using GeekShopping.Utils.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;

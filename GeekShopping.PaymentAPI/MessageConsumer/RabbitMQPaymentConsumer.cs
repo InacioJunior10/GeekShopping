@@ -1,8 +1,9 @@
-﻿using GeekShopping.Integration.Enuns;
+﻿using GeekShopping.Integration.DTOs;
+using GeekShopping.Integration.Enuns;
 using GeekShopping.PaymentAPI.Messages;
 using GeekShopping.PaymentAPI.RabbitMQSender;
 using GeekShopping.PaymentProcessor;
-using GeekShopping.Utils;
+using GeekShopping.Utils.Extensions;
 using RabbitMQ.Client;
 using RabbitMQ.Client.Events;
 using System.Text;
@@ -44,7 +45,7 @@ namespace GeekShopping.PaymentAPI.MessageConsumer
             consumer.Received += (channel, evento) => 
             {
                 var content = Encoding.UTF8.GetString(evento.Body.ToArray());
-                PaymentMessage model = JsonSerializer.Deserialize<PaymentMessage>(content);
+                PaymentDTO model = JsonSerializer.Deserialize<PaymentDTO>(content);
                 ProcessPayment(model).GetAwaiter().GetResult();
                 _channel.BasicAck(evento.DeliveryTag, false);
             };
@@ -53,7 +54,7 @@ namespace GeekShopping.PaymentAPI.MessageConsumer
             return Task.CompletedTask;
         }
 
-        private async Task ProcessPayment(PaymentMessage model)
+        private async Task ProcessPayment(PaymentDTO model)
         {
             var result = _processPayment.PaymentProcessor();
             UpdatePaymentResultMessage paymentResult = new()

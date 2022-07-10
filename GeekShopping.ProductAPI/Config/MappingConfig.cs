@@ -1,5 +1,5 @@
 ﻿using AutoMapper;
-using GeekShopping.ProductAPI.Data.DTOs;
+using GeekShopping.Integration.DTOs;
 using GeekShopping.ProductAPI.Model;
 
 namespace GeekShopping.ProductAPI.Config

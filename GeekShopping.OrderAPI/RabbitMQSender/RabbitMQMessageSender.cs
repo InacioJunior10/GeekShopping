@@ -1,8 +1,7 @@
-﻿using GeekShopping.OrderAPI.Messages;
-using GeekShopping.MessageBus;
-using RabbitMQ.Client;
+﻿using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
+using GeekShopping.Integration.DTOs;
 
 namespace GeekShopping.OrderAPI.RabbitMQSender
 {
@@ -20,7 +19,7 @@ namespace GeekShopping.OrderAPI.RabbitMQSender
             _userName = "guest";
         }
 
-        public void SendMessage(BaseMessage message, string queueName)
+        public void SendMessage(BaseMessageDTO message, string queueName)
         {
             if (ConnectionExists())
             {
@@ -32,7 +31,7 @@ namespace GeekShopping.OrderAPI.RabbitMQSender
             }
         }
 
-        private byte[] GetMessageAsByteArray(BaseMessage message)
+        private byte[] GetMessageAsByteArray(BaseMessageDTO message)
         {
             var options = new JsonSerializerOptions
             {

@@ -1,5 +1,5 @@
 ﻿using GeekShopping.CartAPI.Messages;
-using GeekShopping.MessageBus;
+using GeekShopping.Integration.DTOs;
 using RabbitMQ.Client;
 using System.Text;
 using System.Text.Json;
@@ -20,7 +20,7 @@ namespace GeekShopping.CartAPI.RabbitMQSender
             _userName = "guest";
         }
 
-        public void SendMessage(BaseMessage message, string queueName)
+        public void SendMessage(BaseMessageDTO message, string queueName)
         {
             if (ConnectionExists())
             {
@@ -32,15 +32,15 @@ namespace GeekShopping.CartAPI.RabbitMQSender
             }
         }
 
-        private byte[] GetMessageAsByteArray(BaseMessage message)
+        private byte[] GetMessageAsByteArray(BaseMessageDTO message)
         {
             var options = new JsonSerializerOptions
             {
                 WriteIndented = true,
             };
 
-            var json = JsonSerializer.Serialize<CheckoutHeaderDTO>(
-                    (CheckoutHeaderDTO)message, 
+            var json = JsonSerializer.Serialize<CheckoutHeaderCartDTO>(
+                    (CheckoutHeaderCartDTO)message, 
                     options
                 );
 

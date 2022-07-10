@@ -1,6 +1,6 @@
 ﻿using AutoMapper;
-using GeekShopping.CouponAPI.Data.DTOs;
 using GeekShopping.CouponAPI.Model;
+using GeekShopping.Integration.DTOs;
 
 namespace GeekShopping.CouponAPI.Config
 {

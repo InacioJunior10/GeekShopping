@@ -1,13 +1,13 @@
 ﻿using System.ComponentModel;
 using System.Globalization;
 
-namespace GeekShopping.Utils
+namespace GeekShopping.Utils.Extensions
 {
     public static class StringEnumExtension
     {
         public static string GetDescription<T>(this T e)
         {
-            string str = (string)null;
+            string str = null;
 
             if ((object)e is Enum)
             {
@@ -16,7 +16,7 @@ namespace GeekShopping.Utils
                 {
                     if (num == Convert.ToInt32(e, CultureInfo.InvariantCulture))
                     {
-                        object[] customAttributes = type.GetMember(type.GetEnumName((object)num))[0]
+                        object[] customAttributes = type.GetMember(type.GetEnumName(num))[0]
                             .GetCustomAttributes(typeof(DescriptionAttribute), false);
                         if ((uint)customAttributes.Length > 0U)
                         {

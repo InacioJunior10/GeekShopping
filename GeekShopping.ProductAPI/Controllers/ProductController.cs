@@ -1,4 +1,4 @@
-﻿using GeekShopping.ProductAPI.Data.DTOs;
+﻿using GeekShopping.Integration.DTOs;
 using GeekShopping.ProductAPI.Repository;
 using GeekShopping.ProductAPI.Utils;
 using Microsoft.AspNetCore.Authorization;
